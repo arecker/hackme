@@ -1,13 +1,21 @@
+import os
+
 import flask
+import jinja2
 
 app = flask.Flask('hackme')
+here = os.path.dirname(os.path.realpath(__file__))
+
+app.jinja_loader = jinja2.ChoiceLoader([
+    app.jinja_loader,
+    jinja2.FileSystemLoader([os.path.join(here, 'templates')])
+])
 
 THE_PASSWORD = 'chicagoblackhawks'
 
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    data = {}
     if flask.request.method == 'POST':
         guess = flask.request.form.get('password', '')
 
