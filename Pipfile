@@ -1,0 +1,29 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+flask = "*"
+
+
+[dev-packages]
+
+rope = "*"
+"flake8" = "*"
+importmagic = "*"
+"autopep8" = "*"
+yapf = "*"
+ipdb = "*"
+ipython = "*"
+virtualenv = "*"
+virtualenvwrapper = "*"
+requests = "*"
+
+
+[requires]
+
+python_version = "3.6"
