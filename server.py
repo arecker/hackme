@@ -11,13 +11,16 @@ app.jinja_loader = jinja2.ChoiceLoader([
     jinja2.FileSystemLoader([os.path.join(here, 'templates')])
 ])
 
-THE_PASSWORD = 'chicagoblackhawks'
+THE_PASSWORD = 'blackhawks'
 
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if flask.request.method == 'POST':
-        guess = flask.request.form.get('password', '')
+        guess = flask.request.form.get('password')
+
+        if not guess:
+            return '"password" required'
 
         if guess == THE_PASSWORD:
             return flask.redirect(flask.url_for('success'))
