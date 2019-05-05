@@ -1,29 +1,21 @@
 [[source]]
-
-url = "https://pypi.python.org/simple"
-verify_ssl = true
 name = "pypi"
-
-
-[packages]
-
-flask = "*"
-
+url = "https://pypi.org/simple"
+verify_ssl = true
 
 [dev-packages]
-
 rope = "*"
-"flake8" = "*"
+flake8 = "*"
 importmagic = "*"
-"autopep8" = "*"
+autopep8 = "*"
 yapf = "*"
 ipdb = "*"
 ipython = "*"
 virtualenv = "*"
 virtualenvwrapper = "*"
-requests = "*"
 
+[packages]
+flask = "*"
 
 [requires]
-
-python_version = "3.6"
+python_version = "3.7"

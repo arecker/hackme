@@ -1,4 +1,5 @@
 import os
+import base64
 
 import flask
 import jinja2
@@ -11,23 +12,24 @@ app.jinja_loader = jinja2.ChoiceLoader([
     jinja2.FileSystemLoader([os.path.join(here, 'templates')])
 ])
 
-THE_PASSWORD = 'blackhawks'
+THE_PASSWORD = base64.b64decode('YmxhY2toYXdrcwo=').decode().strip()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    error = None
+
     if flask.request.method == 'POST':
         guess = flask.request.form.get('password')
 
         if not guess:
-            return '"password" required'
-
-        if guess == THE_PASSWORD:
+            error = 'What?  You didn\'t guess a password!'
+        elif guess == THE_PASSWORD:
             return flask.redirect(flask.url_for('success'))
+        else:
+            error = f'Sorry, but \"{guess}\" is not the password!'
 
-        return 'INCORRECT'
-
-    return flask.render_template('login.html')
+    return flask.render_template('login.html', error=error)
 
 
 @app.route('/success/', methods=['GET'])
